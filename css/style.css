@@ -1,0 +1,252 @@
+:root {
+  --font: "Poppins", sans-serif;
+  --ligth: #f2f2f2;
+  --dark: #2f2f2f;
+  --black: #000;
+  --white: #fff;
+  --primary: #017143;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 16px;
+  font-family: var(--font);
+  height: 200vh;
+}
+
+nav {
+  position: fixed;
+  width: 100%;
+  height: 8.5rem;
+  transition: all .3s;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 8.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  justify-content: space-between;
+  padding: 2rem 5rem;
+  transition: all 0.4s;
+  border-bottom: 3px solid var(--primary);
+  box-shadow: .5rem 0 1rem rgba(0,0,0,.6);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 2rem 10rem;
+  }
+}
+
+.logo-cont {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+@media (max-width: 480px) {
+  .logo-cont {
+    gap: 1.4rem;
+  }
+
+  .logo-cont h1 {
+    font-size: 1.2rem;
+  }
+
+  .logo {
+    max-height: 4.5rem;
+  }
+}
+
+.logo-cont h1 {
+  font-size: 2.4rem;
+}
+
+.logo {
+  max-width: 6rem;
+}
+
+.menu {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+  }
+}
+
+.menu li {
+  list-style: none;
+}
+
+.menu--items {
+  display: inline-block;
+  font-size: 1.6rem;
+  color: var(--dark);
+  text-decoration: none;
+  transition: color .3s ease-in-out;
+}
+
+.menu--items:hover {
+  color: var(--black);
+}
+
+.menu--items:is(:link, :visited, :active).active {
+  background: var(--primary);
+  padding: 1.5rem 2rem;
+  color: var(--ligth);
+  border-radius: 5rem;
+}
+
+.menu--items:is(:link, :visited, :active).active:hover {
+  background: transparent;
+  outline: 1px solid #017143;
+  color: var(--dark);
+}
+
+.hamburger {
+  display: block;
+  position: relative;
+  z-index: 1;
+
+  background: none;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+}
+
+.hamburger span {
+  display: block;
+  position: relative;
+  width: 3.3rem;
+  height: 4px;
+  background: var(--dark);
+  margin-bottom: .5rem;
+  border-radius: 6px;
+  z-index: 1;
+  transform-origin: 0 0;
+  transition: all .3s;
+}
+
+.hamburger.isactive:hover span {
+  background: var(--primary); 
+}
+
+.hamburger span:nth-child(2) {
+  background: var(--primary);
+  transform: translateX(1rem);
+}
+
+.hamburger:hover span:nth-child(2) {
+  background: var(--dark);
+  transform: translateX(0);
+}
+
+.hamburger.isactive span:nth-child(1) {
+  transform: translate(0, 2px) rotate(45deg);
+}
+
+.hamburger.isactive span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(1.5rem);
+}
+
+.hamburger.isactive span:nth-child(3) {
+  transform: translate(-3px, 3px) rotate(-45deg);
+}
+
+.container.show {
+  top: 8.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  nav.show {
+    display: block;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--dark);
+  }
+
+  nav.show .logo-cont {
+    text-align: center;
+    justify-content: flex-start; 
+    padding: 3rem 0;
+    color: var(--white);
+  }
+
+  nav.show .container {
+    width: 100%;
+    border: 0;
+    position: relative;
+    box-shadow: none;
+    display: block;
+  }
+
+  nav.show .logo-cont h1 {
+    font-size: 2.4rem;
+  }
+
+  nav.show .logo {
+    max-width: 5rem;
+  }
+
+  nav.show .hamburger {
+    display: block;
+    position: absolute;
+    top: 6.5rem;
+    right: 5rem;
+  }  
+
+  nav.show .hamburger span {
+    width: 3rem;
+    height: 4px;
+    background: var(--white);
+  }
+
+  nav.show .hamburger span:nth-child(2) {
+    background-color: var(--ligth);
+    transform: translate(0);
+  }
+
+  nav.show .menu {
+    display: block;
+    width: 100%;
+    height: min(70vh, 100vh);  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+  }
+
+  nav.show .menu li a {
+    color: var(--white);
+    font-size: 3rem;
+  }
+}
